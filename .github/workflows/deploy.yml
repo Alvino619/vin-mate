@@ -1,8 +1,20 @@
-steps:
-  - name: Upload via FTP
-    uses: SamKirkland/FTP-Deploy-Action@v4
-    with:
-      server: ${{ secrets.ftpupload.net }}
-      username: ${{ secrets.if0_39016780 }}
-      password: ${{ secrets.qyo4qIYQ3dd2NJ }}
-      server-dir: ${{ secrets./htdocs/ }}
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches: ["main"]  # Run on push to 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # Check out your repo
+      
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}       # e.g., 'ftpupload.net'
+          username: ${{ secrets.FTP_USERNAME }} # e.g., 'if0_39016780'
+          password: ${{ secrets.FTP_PASSWORD }} # e.g., 'qyo4qIYQ3dd2NJ'
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}  # e.g., '/htdocs/'
+          local-dir: ./  # Upload all files from the repo root
