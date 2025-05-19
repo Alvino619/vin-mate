@@ -1,0 +1,8 @@
+steps:
+  - name: Upload via FTP
+    uses: SamKirkland/FTP-Deploy-Action@v4
+    with:
+      server: ${{ secrets.ftpupload.net }}
+      username: ${{ secrets.if0_39016780 }}
+      password: ${{ secrets.qyo4qIYQ3dd2NJ }}
+      server-dir: ${{ secrets./htdocs/ }}
